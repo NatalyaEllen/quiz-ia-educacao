@@ -268,8 +268,13 @@ function configurarAjuda() {
 
 async function finalizarQuiz() {
     const total = perguntas.length;
-    const porcentagem = Math.round((acertos / total) * 100);
-    const usuarioSalvo = localStorage.getItem("usuarioQuiz");
+
+    const porcentagem = Math.round(
+        (acertos / total) * 100
+    );
+
+    const usuarioSalvo =
+        localStorage.getItem("usuarioQuiz");
 
     if (usuarioSalvo) {
         usuario = JSON.parse(usuarioSalvo);
@@ -279,16 +284,19 @@ async function finalizarQuiz() {
         nome: usuario?.nome || "Visitante",
         perfis: usuario?.perfis || ["Visitante"],
         disciplina: usuario?.disciplina || "",
-        acertos,
-        total,
-        porcentagem,
+        acertos: acertos,
+        total: total,
+        porcentagem: porcentagem,
+        respostas: respostasUsuario,
     };
 
+    // Salva o resultado do usuário atual no navegador.
     localStorage.setItem(
         "resultadoQuiz",
         JSON.stringify({ ...resultado, respostas: respostasUsuario })
     );
 
+    // Salva o resultado no MongoDB.
     try {
         const resposta = await fetch("/api/resultados", {
             method: "POST",
@@ -299,11 +307,16 @@ async function finalizarQuiz() {
         if (!resposta.ok) {
             throw new Error("O servidor não aceitou o resultado.");
         }
+
+        const dados = await resposta.json();
+        console.log(dados.mensagem);
     } catch (erro) {
         console.error("Erro ao salvar resultado:", erro);
     }
 
+    // Exibe a animação final antes de abrir o resultado.
     alterarExpressaoBit("comemorando");
+
     setTimeout(() => {
         window.location.href = "/resultado";
     }, 500);

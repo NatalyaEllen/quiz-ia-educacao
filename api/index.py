@@ -44,11 +44,6 @@ def resultado():
 	return render_template("resultado.html")
 
 
-@app.route("/ranking")
-def ranking():
-	return render_template("ranking.html")
-
-
 @app.route("/api/perguntas", methods=["GET"])
 def obter_perguntas():
 	perguntas = list(colecao_perguntas.find({}, {"_id": 0}))
@@ -66,6 +61,7 @@ def salvar_resultado():
 		"acertos": dados.get("acertos", 0),
 		"total": dados.get("total", 0),
 		"porcentagem": dados.get("porcentagem", 0),
+		"respostas": dados.get("respostas", []),
 		"data": datetime.now(),
 	}
 
@@ -75,27 +71,6 @@ def salvar_resultado():
 		"sucesso": True,
 		"mensagem": "Resultado salvo com sucesso!",
 	})
-
-
-@app.route("/api/ranking", methods=["GET"])
-def obter_ranking():
-	ranking = list(
-		colecao_resultados.find(
-			{},
-			{
-				"_id": 0,
-				"nome": 1,
-				"perfis": 1,
-				"acertos": 1,
-				"total": 1,
-				"porcentagem": 1,
-			},
-		)
-		.sort("porcentagem", -1)
-		.limit(20)
-	)
-
-	return jsonify(ranking)
 
 
 @app.route("/api/teste")
