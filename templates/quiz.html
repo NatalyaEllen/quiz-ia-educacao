@@ -20,60 +20,89 @@
 
         <div class="quiz-header">
             <span id="pontuacaoHeader">⭐ 0 pontos</span>
-            <button class="theme-button" onclick="alternarTema()">☀️ / 🌙</button>
+            <button class="theme-button" id="themeButton" onclick="alternarTema()" aria-label="Alternar tema">
+                ☀️ / 🌙
+            </button>
         </div>
     </header>
 
     <main class="quiz-container">
-        <section class="progress-section">
-            <div class="progress-info">
-                <span id="numeroPergunta">Pergunta 1 de 10</span>
-                <span id="porcentagem">10%</span>
-            </div>
-
-            <div class="progress-bar">
-                <div id="progress" class="progress"></div>
-            </div>
-        </section>
-
         <section class="quiz-layout">
             <aside class="mentor">
-                <div class="mentor-title">🟢 Bit, o Mentor IA</div>
+                <div class="mentor-title">
+                    <span class="status-dot"></span>
+                    Bit, o Mentor IA
+                </div>
 
-                <div class="quiz-mascot">
-                    <div class="antenna"></div>
+                <div class="quiz-mascot" id="bitMascot" aria-label="Bit, o mentor virtual">
+                    <div class="antenna">
+                        <div class="antenna-light"></div>
+                    </div>
                     <div class="head">
-                        <div class="eye"></div>
-                        <div class="eye"></div>
-                        <div class="mouth"></div>
+                        <div class="ear left-ear"></div>
+                        <div class="face">
+                            <div class="eye left-eye"></div>
+                            <div class="eye right-eye"></div>
+                            <div class="eyebrow left-eyebrow"></div>
+                            <div class="eyebrow right-eyebrow"></div>
+                            <div class="mouth"></div>
+                        </div>
+                        <div class="ear right-ear"></div>
                     </div>
                     <div class="body">
                         <div class="screen">✦</div>
+                        <div class="arm left-arm"></div>
+                        <div class="arm right-arm"></div>
                     </div>
                 </div>
 
-                <div class="mentor-message">
-                    <strong>💬 Dica do Bit:</strong>
+                <div class="mentor-message" id="mentorMessage" aria-live="polite">
+                    <strong id="mentorMessageTitle">💬 Dica do Bit:</strong>
                     <p id="dica">Vamos pensar juntos!</p>
                 </div>
 
+                <button id="btnAjuda" class="help-button" type="button">
+                    💡 Pedir ajuda ao Bit
+                </button>
+
                 <div class="mentor-card">
-                    💡
-                    <strong>Aprenda enquanto joga</strong>
-                    <p>
-                        Mesmo quando você errar, receberá uma explicação para aprender com a questão.
-                    </p>
+                    <div class="mentor-card-icon">🧠</div>
+                    <div>
+                        <strong>Aprenda enquanto joga</strong>
+                        <p>
+                            Mesmo quando você errar, receberá uma explicação para aprender com a questão.
+                        </p>
+                    </div>
                 </div>
             </aside>
 
             <section class="question-card">
+                <div class="question-progress">
+                    <div class="progress-info">
+                        <span id="questionNumber">Questão 1 de 10</span>
+                        <span id="progressPercent" class="progress-percent">10%</span>
+                    </div>
+
+                    <div class="progress-track" aria-label="Progresso do quiz">
+                        <div id="progressBar" class="progress-bar" style="width: 10%;"></div>
+                    </div>
+
+                    <div id="questionIndicators" class="question-indicators" aria-label="Questões do quiz"></div>
+                </div>
+
                 <div class="category" id="categoria">ÉTICA E RESPONSABILIDADE</div>
                 <h1 id="pergunta">Carregando pergunta...</h1>
                 <div id="alternativas" class="answers"></div>
-                <div id="feedback" class="feedback hidden"></div>
-                <button id="btnResponder" class="primary-button answer-button">
-                    Confirmar escolha →
-                </button>
+                <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+
+                <div class="question-actions">
+                    <button id="btnResponder" class="primary-button answer-button" type="button">
+                        Confirmar escolha →
+                    </button>
+                    <button id="btnAvancar" class="primary-button answer-button hidden" type="button">
+                        Avançar →
+                    </button>
+                </div>
             </section>
         </section>
     </main>
