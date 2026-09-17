@@ -51,9 +51,13 @@
 
             <div class="result-message" id="feedbackFinal"></div>
 
-            <div class="result-buttons">
-                <button onclick="window.location.href='/quiz'" class="secondary-button">
-                    🔄 Refazer Quiz
+            <div class="result-actions">
+                <button class="primary-button" onclick="fazerQuizNovamente()">
+                    🔄 Fazer o quiz novamente
+                </button>
+
+                <button class="secondary-button" onclick="voltarInicio()">
+                    🏠 Voltar para a página inicial
                 </button>
             </div>
         </div>
@@ -62,6 +66,14 @@
     <script src="{{ url_for('static', filename='js/tema.js') }}"></script>
 
     <script>
+        function fazerQuizNovamente() {
+            window.location.href = "/quiz";
+        }
+
+        function voltarInicio() {
+            window.location.href = "/";
+        }
+
         const dados = JSON.parse(localStorage.getItem("resultadoQuiz"));
 
         if (dados) {

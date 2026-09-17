@@ -929,6 +929,33 @@ footer {
 	border: none;
 }
 
+.result-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 25px;
+}
+
+.result-actions .primary-button,
+.result-actions .secondary-button {
+	width: 100%;
+	padding: 14px 20px;
+	border: 2px solid #3478f6;
+	border-radius: 12px;
+	background: transparent;
+	color: #3478f6;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: 0.2s ease;
+}
+
+.result-actions .primary-button:hover,
+.result-actions .secondary-button:hover {
+	transform: translateY(-2px);
+	opacity: 0.9;
+}
+
 @media (max-width: 600px) {
 	.result-card {
 		padding: 25px;
