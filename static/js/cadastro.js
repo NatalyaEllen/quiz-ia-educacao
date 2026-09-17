@@ -1,4 +1,16 @@
 const formulario = document.getElementById("formCadastro");
+const perfilOutro = document.getElementById("perfilOutro");
+const outroPerfilContainer = document.getElementById("outroPerfilContainer");
+const outroPerfil = document.getElementById("outroPerfil");
+
+perfilOutro.addEventListener("change", function () {
+    outroPerfilContainer.classList.toggle("hidden", !perfilOutro.checked);
+    outroPerfil.required = perfilOutro.checked;
+
+    if (!perfilOutro.checked) {
+        outroPerfil.value = "";
+    }
+});
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -17,6 +29,17 @@ formulario.addEventListener("submit", function (event) {
     if (perfis.length === 0) {
         alert("Selecione pelo menos um perfil.");
         return;
+    }
+
+    const perfilPersonalizado = outroPerfil.value.trim();
+    if (perfilOutro.checked && !perfilPersonalizado) {
+        alert("Digite seu perfil para continuar.");
+        outroPerfil.focus();
+        return;
+    }
+
+    if (perfilOutro.checked) {
+        perfis[perfis.indexOf("Outro")] = `Outro: ${perfilPersonalizado}`;
     }
 
     const usuario = {

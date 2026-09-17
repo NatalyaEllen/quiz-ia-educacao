@@ -509,6 +509,16 @@ footer {
 	background: rgba(116, 103, 255, 0.12);
 }
 
+.other-profile {
+	margin-top: 15px;
+}
+
+.other-profile label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
 .form-button {
 	width: 100%;
 	border: none;
