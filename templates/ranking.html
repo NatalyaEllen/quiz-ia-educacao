@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - Quiz IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <div class="logo-icon">🏆</div>
+            <div>
+                <strong>Quiz IA</strong>
+                <span>Ranking</span>
+            </div>
+        </div>
+
+        <button class="theme-button" onclick="alternarTema()">☀️ / 🌙</button>
+    </header>
+
+    <main class="ranking-container">
+        <div class="ranking-card">
+            <span class="badge">🏆 DESEMPENHO</span>
+            <h1>Ranking do Quiz</h1>
+            <p>Veja os participantes com melhores resultados.</p>
+            <div id="ranking">Carregando ranking...</div>
+            <a href="/" class="primary-button">← Voltar para o início</a>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/tema.js') }}"></script>
+
+    <script>
+        async function carregarRanking() {
+            const resposta = await fetch("/api/ranking");
+            const dados = await resposta.json();
+            const container = document.getElementById("ranking");
+
+            container.innerHTML = "";
+
+            dados.forEach((item, indice) => {
+                const div = document.createElement("div");
+                div.className = "ranking-item";
+
+                const medalha = indice === 0
+                    ? "🥇"
+                    : indice === 1
+                        ? "🥈"
+                        : indice === 2
+                            ? "🥉"
+                            : indice + 1;
+
+                div.innerHTML = `
+                    <div class="ranking-position">${medalha}</div>
+                    <div class="ranking-name">
+                        <strong>${item.nome}</strong>
+                        <span>${item.perfis.join(", ")}</span>
+                    </div>
+                    <div class="ranking-score">${item.porcentagem}%</div>
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        carregarRanking();
+    </script>
+</body>
+
+</html>

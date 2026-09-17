@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado - Quiz IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <div class="logo-icon">🤖</div>
+            <div>
+                <strong>Quiz IA</strong>
+                <span>na Educação</span>
+            </div>
+        </div>
+
+        <button class="theme-button" onclick="alternarTema()">☀️ / 🌙</button>
+    </header>
+
+    <main class="result-container">
+        <div class="result-card">
+            <div class="result-mascot">🏆🤖</div>
+            <span class="badge">🎓 QUIZ CONCLUÍDO</span>
+
+            <h1 id="tituloResultado">Parabéns!</h1>
+            <p id="mensagemResultado">Você concluiu o desafio.</p>
+
+            <div class="score-circle">
+                <span id="porcentagemResultado">0%</span>
+                <small>pontuação</small>
+            </div>
+
+            <div class="score-details">
+                <div>
+                    <strong id="acertos">0</strong>
+                    <span>Acertos</span>
+                </div>
+                <div>
+                    <strong id="erros">0</strong>
+                    <span>Erros</span>
+                </div>
+                <div>
+                    <strong id="total">10</strong>
+                    <span>Total</span>
+                </div>
+            </div>
+
+            <div class="result-message" id="feedbackFinal"></div>
+
+            <div class="result-buttons">
+                <button onclick="window.location.href='/quiz'" class="secondary-button">
+                    🔄 Refazer Quiz
+                </button>
+                <button onclick="window.location.href='/ranking'" class="primary-button">
+                    🏆 Ver Ranking
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/tema.js') }}"></script>
+
+    <script>
+        const dados = JSON.parse(localStorage.getItem("resultadoQuiz"));
+
+        if (dados) {
+            document.getElementById("porcentagemResultado").textContent = `${dados.porcentagem}%`;
+            document.getElementById("acertos").textContent = dados.acertos;
+            document.getElementById("erros").textContent = dados.total - dados.acertos;
+            document.getElementById("total").textContent = dados.total;
+            document.getElementById("tituloResultado").textContent =
+                dados.porcentagem >= 80
+                    ? `Parabéns, ${dados.nome}!`
+                    : `Muito bem, ${dados.nome}!`;
+
+            let mensagem;
+
+            if (dados.porcentagem >= 90) {
+                mensagem = "Excelente! Você demonstrou um ótimo domínio sobre o uso responsável da IA na educação.";
+            } else if (dados.porcentagem >= 70) {
+                mensagem = "Muito bom! Você possui bons conhecimentos. Continue desenvolvendo seu pensamento crítico.";
+            } else {
+                mensagem = "Continue aprendendo! Cada erro é uma oportunidade para compreender melhor o uso responsável da IA.";
+            }
+
+            document.getElementById("mensagemResultado").textContent = "Você concluiu o desafio.";
+            document.getElementById("feedbackFinal").textContent = mensagem;
+        }
+    </script>
+</body>
+
+</html>

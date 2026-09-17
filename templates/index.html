@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quiz IA na Educação</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+	<header class="topbar">
+		<div class="logo">
+			<div class="logo-icon">🤖</div>
+			<div>
+				<strong>Quiz IA</strong>
+				<span>na Educação</span>
+			</div>
+		</div>
+
+		<div class="top-actions">
+			<button class="theme-button" onclick="alternarTema()">
+				☀️
+				<span>Claro</span>
+			</button>
+			<button class="theme-button" onclick="alternarTema()">
+				🌙
+				<span>Escuro</span>
+			</button>
+		</div>
+	</header>
+
+	<main class="home-container">
+		<section class="hero">
+			<div class="hero-content">
+				<span class="badge">🎓 EDUCAÇÃO + TECNOLOGIA</span>
+
+				<h1>
+					Quiz sobre o uso adequado da
+					<span>Inteligência Artificial</span>
+					na Educação
+				</h1>
+
+				<p>
+					Teste seus conhecimentos sobre o uso responsável, ético e pedagógico da
+					Inteligência Artificial no ambiente educacional.
+				</p>
+
+				<div class="hero-features">
+					<div>🧠 <span>Pensamento crítico</span></div>
+					<div>🔐 <span>Privacidade</span></div>
+					<div>💡 <span>Uso responsável</span></div>
+				</div>
+
+				<a href="/cadastro" class="primary-button">▶ Começar Quiz</a>
+			</div>
+
+			<div class="hero-mascot">
+				<div class="mascot-glow"></div>
+				<div class="mascot">
+					<div class="antenna"></div>
+					<div class="head">
+						<div class="eye"></div>
+						<div class="eye"></div>
+						<div class="mouth"></div>
+					</div>
+					<div class="body">
+						<div class="arm left"></div>
+						<div class="arm right"></div>
+						<div class="screen"><span>✦</span></div>
+					</div>
+				</div>
+
+				<div class="speech">
+					Olá! Eu sou o Bit 🤖<br>
+					Vou acompanhar você<br>
+					durante o quiz!
+				</div>
+			</div>
+		</section>
+
+		<section class="principles">
+			<span class="section-label">FUNDAMENTOS ESSENCIAIS</span>
+			<h2>3 Mandamentos do Aluno Consciente</h2>
+
+			<div class="cards">
+				<article class="info-card">
+					<div class="card-icon">🧠</div>
+					<small>PRINCÍPIO 01</small>
+					<h3>IA é copiloto, não piloto</h3>
+					<p>
+						A Inteligência Artificial pode auxiliar no processo de aprendizagem,
+						mas a responsabilidade continua sendo humana.
+					</p>
+				</article>
+
+				<article class="info-card">
+					<div class="card-icon red">⚠️</div>
+					<small>PRINCÍPIO 02</small>
+					<h3>Cuidado com alucinações</h3>
+					<p>
+						Modelos de IA podem produzir informações incorretas ou referências
+						inexistentes. Sempre verifique as fontes.
+					</p>
+				</article>
+
+				<article class="info-card">
+					<div class="card-icon green">🔐</div>
+					<small>PRINCÍPIO 03</small>
+					<h3>Privacidade sempre</h3>
+					<p>
+						Evite compartilhar informações pessoais ou sensíveis de estudantes
+						em ferramentas de Inteligência Artificial.
+					</p>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<strong>Quiz IA na Educação</strong>
+		<span>Tecnologia + Consciência = Uma educação melhor!</span>
+	</footer>
+
+	<script src="{{ url_for('static', filename='js/tema.js') }}"></script>
+</body>
+
+</html>
