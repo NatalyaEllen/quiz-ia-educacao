@@ -472,6 +472,74 @@ footer {
 	border-color: var(--primary);
 }
 
+.virtual-keyboard {
+	margin-top: 18px;
+	padding: 14px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: var(--surface-2);
+}
+
+.virtual-keyboard-header,
+.keyboard-controls {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.virtual-keyboard-header {
+	justify-content: space-between;
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+
+.keyboard-keys {
+	display: grid;
+	grid-template-columns: repeat(10, minmax(0, 1fr));
+	gap: 6px;
+}
+
+.keyboard-key,
+.keyboard-action {
+	min-height: 42px;
+	padding: 8px 10px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--surface);
+	color: var(--text);
+	font: inherit;
+	cursor: pointer;
+}
+
+.keyboard-key:hover,
+.keyboard-action:hover {
+	border-color: var(--primary);
+	background: var(--surface-2);
+}
+
+.keyboard-controls {
+	margin-top: 8px;
+}
+
+.keyboard-space {
+	flex: 1;
+}
+
+.keyboard-done {
+	background: var(--primary);
+	color: #fff;
+}
+
+@media (max-width: 600px) {
+	.keyboard-keys {
+		grid-template-columns: repeat(7, minmax(0, 1fr));
+	}
+
+	.keyboard-controls {
+		flex-wrap: wrap;
+	}
+}
+
 .helper {
 	color: var(--muted);
 	font-size: 13px;

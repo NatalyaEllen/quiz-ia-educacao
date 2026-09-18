@@ -65,6 +65,19 @@
                 </label>
                 <input type="text" id="disciplina" placeholder="Ex.: Matemática, Português...">
 
+                <section id="tecladoVirtual" class="virtual-keyboard hidden" aria-label="Teclado virtual">
+                    <div class="virtual-keyboard-header">
+                        <span>Teclado virtual</span>
+                        <button type="button" id="fecharTeclado" class="keyboard-action" aria-label="Fechar teclado">×</button>
+                    </div>
+                    <div id="teclasLetras" class="keyboard-keys"></div>
+                    <div class="keyboard-controls">
+                        <button type="button" id="teclaEspaco" class="keyboard-action keyboard-space">Espaço</button>
+                        <button type="button" id="teclaApagar" class="keyboard-action">Apagar</button>
+                        <button type="button" id="teclaConcluir" class="keyboard-action keyboard-done">Concluir</button>
+                    </div>
+                </section>
+
                 <button type="submit" class="primary-button form-button">🚀 Começar Desafio</button>
             </form>
         </div>
